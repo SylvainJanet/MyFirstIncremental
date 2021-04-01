@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DimensionFormulas = void 0;
 var EFFECT_MULT = 300, PRICE_MULT = 2;
 var DimensionFormulas = (function () {
     function DimensionFormulas() {
@@ -13,4 +10,4 @@ var DimensionFormulas = (function () {
     };
     return DimensionFormulas;
 }());
-exports.DimensionFormulas = DimensionFormulas;
+export { DimensionFormulas };

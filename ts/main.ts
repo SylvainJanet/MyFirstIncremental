@@ -1,4 +1,6 @@
+import {Dimension} from "./classes/Dimension.js";
 import {GameData} from "./classes/GameData.js";
+
 
 const game = new GameData();
 
@@ -10,7 +12,7 @@ function displayDimensions () {
 
     divDims.innerHTML = "";
 
-    game.lstDimension.forEach((dim) => {
+    game.lstDimension.forEach((dim: Dimension) => {
 
       divDims.appendChild(dim.getDisplayNode());
 

@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InitGameConstants = void 0;
 var FIRST_DIMENSION_EFFECT = 1, FIRST_DIMENSION_PRICE = 1;
 var InitGameConstants = (function () {
     function InitGameConstants() {
@@ -21,4 +18,4 @@ var InitGameConstants = (function () {
     });
     return InitGameConstants;
 }());
-exports.InitGameConstants = InitGameConstants;
+export { InitGameConstants };
