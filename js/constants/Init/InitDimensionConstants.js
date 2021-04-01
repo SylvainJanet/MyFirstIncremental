@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InitDimensionConstants = void 0;
 var INCREMENT_DIMENSION_NBR_ON_CREATION = 1, INIT_DIMENSION_NBR = 0;
 var InitDimensionConstants = (function () {
     function InitDimensionConstants() {
@@ -21,4 +18,4 @@ var InitDimensionConstants = (function () {
     });
     return InitDimensionConstants;
 }());
-exports.InitDimensionConstants = InitDimensionConstants;
+export { InitDimensionConstants };

@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var GameData_js_1 = require("./classes/GameData.js");
-var game = new GameData_js_1.GameData();
+import { GameData } from "./classes/GameData.js";
+var game = new GameData();
 function displayDimensions() {
     var divDims = document.getElementById("dimensions");
     if (divDims !== null) {
