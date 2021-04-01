@@ -4,7 +4,8 @@
   "description": "My first incremental",
   "main": "index.js",
   "dependencies": {
-    "babel-eslint": "^10.1.0"
+    "babel-eslint": "^10.1.0",
+    "typescript": "^4.2.3"
   },
   "devDependencies": {
     "eslint": "^7.23.0"
