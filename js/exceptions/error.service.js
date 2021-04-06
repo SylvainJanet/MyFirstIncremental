@@ -1,3 +1,5 @@
+import { ErrorCode } from "./errorCode";
+import { ErrorCustom } from "./errorCustom";
 import { ErrorType } from "./errorType";
 var ErrorService = (function () {
     function ErrorService() {
@@ -22,15 +24,11 @@ var ErrorService = (function () {
         ErrorService.errorCustom.code = -1;
     };
     ErrorService.dealWith = function () {
-        var res = { "code": ErrorService.getErrorCode(),
-            "message": ErrorService.getErrorMessage(),
-            "type": ErrorService.getErrorType() };
+        var res = new ErrorCustom(ErrorService.getErrorType(), ErrorService.getErrorCode(), ErrorService.getErrorMessage());
         ErrorService.deal();
         return res;
     };
-    ErrorService.errorCustom = { "code": -1,
-        "message": "",
-        "type": ErrorType.None };
+    ErrorService.errorCustom = new ErrorCustom(ErrorType.None, ErrorCode.NO_ERROR, "");
     return ErrorService;
 }());
 export { ErrorService };

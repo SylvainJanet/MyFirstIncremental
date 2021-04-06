@@ -1,17 +1,21 @@
-import {ErrorType} from "./../exceptions/errorType";
+// Import {ErrorCustom} from "./../exceptions/errorCustom.js";
+import {ErrorType} from "./../exceptions/errorType.js";
+
 export class TypeHelper {
 
   static isErrorCustom (object: any): boolean {
 
-    return object && object.type && TypeHelper.isErrorType(object.type) &&
-      object.code && typeof object.code === "number" &&
-      object.message && typeof object.message === "string";
+    return typeof object !== "undefined" &&
+      typeof object.type !== "undefined" &&
+      TypeHelper.isErrorType(object.type) &&
+      typeof object.code === "number" &&
+      typeof object.message === "string";
 
   }
 
   static isErrorType (object: any): boolean {
 
-    return object && object in ErrorType;
+    return typeof object !== "undefined" && Boolean(object in ErrorType);
 
   }
 
