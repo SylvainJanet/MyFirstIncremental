@@ -1,12 +1,14 @@
-import { TypeHelper } from './../helpers/TypeHelper';
+import {ErrorCode} from "./errorCode";
 import {ErrorCustom} from "./errorCustom";
 import {ErrorType} from "./errorType";
 
 export class ErrorService {
 
-  static errorCustom: ErrorCustom = {"code": -1,
-    "message": "",
-    "type": ErrorType.None};
+  static errorCustom = new ErrorCustom(
+    ErrorType.None,
+    ErrorCode.NO_ERROR,
+    ""
+  );
 
   static getErrorType (): ErrorType {
 
@@ -44,26 +46,14 @@ export class ErrorService {
 
   static dealWith (): ErrorCustom {
 
-    const res: ErrorCustom = {"code": ErrorService.getErrorCode(),
-      "message": ErrorService.getErrorMessage(),
-      "type": ErrorService.getErrorType()};
+    const res: ErrorCustom = new ErrorCustom(
+      ErrorService.getErrorType(),
+      ErrorService.getErrorCode(),
+      ErrorService.getErrorMessage()
+    );
     ErrorService.deal();
     return res;
 
   }
 
 }
-
-
-// eslint-disable-next-line no-console
-window.onerror = (_message, _source, _lineno, _colno, error) => {
-
-  console.log(`ceci est un test d'erreur : ${error?.message}`);
-  if (TypeHelper.isErrorCustom(error)) {
-    const errorCustom = ((error as unknown) as ErrorCustom);
-    console.log("message" + errorCustom.message);
-    console.log("code" + errorCustom.code);
-    console.log("type" + errorCustom.type)
-  }
-
-};
