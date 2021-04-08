@@ -1,5 +1,5 @@
-const CUSTOM_CODE = 1,
-  NO_ERROR = -1;
+const NO_ERROR = -1,
+  TEST = 0;
 
 
 export class ErrorCode {
@@ -10,9 +10,9 @@ export class ErrorCode {
 
   }
 
-  static get CUSTOM_CODE () {
+  static get TEST () {
 
-    return CUSTOM_CODE;
+    return TEST;
 
   }
 
