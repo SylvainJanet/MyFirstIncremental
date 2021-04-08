@@ -1,10 +1,17 @@
-const CUSTOM_MESSAGE = "test error message";
+const EMPTY = "",
+  TEST = "test error message";
 
 export class ErrorMessages {
 
-  static get CUSTOM_MESSAGE () {
+  static get TEST () {
 
-    return CUSTOM_MESSAGE;
+    return TEST;
+
+  }
+
+  static get EMPTY () {
+
+    return EMPTY;
 
   }
 

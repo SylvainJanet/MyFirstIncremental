@@ -1,4 +1,4 @@
-var CUSTOM_CODE = 1, NO_ERROR = -1;
+var NO_ERROR = -1, TEST = 0;
 var ErrorCode = (function () {
     function ErrorCode() {
     }
@@ -9,9 +9,9 @@ var ErrorCode = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(ErrorCode, "CUSTOM_CODE", {
+    Object.defineProperty(ErrorCode, "TEST", {
         get: function () {
-            return CUSTOM_CODE;
+            return TEST;
         },
         enumerable: false,
         configurable: true

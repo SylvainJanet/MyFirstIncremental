@@ -1,5 +1,5 @@
 import { InitDimensionConstants } from "../constants/Init/InitDimensionConstants.js";
-import { UserUpdate } from "../listener/UserUpdate.js";
+import { UserUpdate } from "../../events/emitters/UserUpdate.js";
 var Dimension = (function () {
     function Dimension(game, price, effect) {
         this.game = game;
