@@ -2,7 +2,7 @@ import {Dimension} from "./Dimension.js";
 import {DimensionFormulas} from "../constants/Formulas/DimensionFormulas.js";
 import {Generator} from "./Generator";
 import {InitGameConstants} from "../constants/Init/InitGameConstants.js";
-import {UserUpdate} from "../listener/UserUpdate.js";
+import {UserUpdate} from "../../events/emitters/UserUpdate.js";
 
 
 export class GameData {

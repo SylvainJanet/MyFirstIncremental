@@ -1,6 +1,6 @@
 import {GameData} from "./GameData";
 import {InitDimensionConstants} from "../constants/Init/InitDimensionConstants.js";
-import {UserUpdate} from "../listener/UserUpdate.js";
+import {UserUpdate} from "../../events/emitters/UserUpdate.js";
 
 export class Dimension {
 

@@ -13,6 +13,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import { ErrorCode } from "./errorCode";
+import { ErrorMessages } from "./errorMessages";
 import { ErrorType } from "./errorType.js";
 var ErrorCustom = (function (_super) {
     __extends(ErrorCustom, _super);
@@ -26,6 +28,18 @@ var ErrorCustom = (function (_super) {
     }
     ErrorCustom.getLogErrorMessage = function (error) {
         return "Error - type " + ErrorType[error.type] + " - code " + error.code + " - " + error.message;
+    };
+    ErrorCustom.prototype.getLogErrorMessage = function () {
+        return ErrorCustom.getLogErrorMessage(this);
+    };
+    ErrorCustom.getSolvedError = function () {
+        return new ErrorCustom(ErrorType.None, ErrorCode.NO_ERROR, ErrorMessages.EMPTY);
+    };
+    ErrorCustom.isSolved = function (error) {
+        return error.type === ErrorType.None && error.code === ErrorCode.NO_ERROR && error.message === ErrorMessages.EMPTY;
+    };
+    ErrorCustom.prototype.isSolved = function () {
+        return ErrorCustom.isSolved(this);
     };
     return ErrorCustom;
 }(Error));

@@ -1,7 +1,7 @@
 import { Dimension } from "./Dimension.js";
 import { DimensionFormulas } from "../constants/Formulas/DimensionFormulas.js";
 import { InitGameConstants } from "../constants/Init/InitGameConstants.js";
-import { UserUpdate } from "../listener/UserUpdate.js";
+import { UserUpdate } from "../../events/emitters/UserUpdate.js";
 var GameData = (function () {
     function GameData() {
         this.number = 0;
