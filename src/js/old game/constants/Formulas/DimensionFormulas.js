@@ -1,4 +1,4 @@
-var EFFECT_MULT = 300, PRICE_MULT = 2;
+var EFFECT_MULT = 2, PRICE_MULT = 2;
 var DimensionFormulas = (function () {
     function DimensionFormulas() {
     }
