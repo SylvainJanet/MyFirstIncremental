@@ -1,4 +1,4 @@
 export enum ErrorType {
   Test,
-  None
+  None,
 }

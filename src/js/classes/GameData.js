@@ -5,7 +5,7 @@ var GameData = (function () {
         this.number = InitGameConstants.INIT_NUMBER;
         this.tickLength = InitGameConstants.TICK_LENGTH;
         this.lstDimension = [
-            new Dimension(this, InitGameConstants.FIRST_DIMENSION_NUMBER, InitGameConstants.FIRST_DIMENSION_QTY, InitGameConstants.FIRST_DIMENSION_PRICE, InitGameConstants.FIRST_DIMENSION_EFFECT, InitGameConstants.FIRST_DIMENSION_QTYGENERATEDPERTICK)
+            new Dimension(this, InitGameConstants.FIRST_DIMENSION_NUMBER, InitGameConstants.FIRST_DIMENSION_QTY, InitGameConstants.FIRST_DIMENSION_PRICE, InitGameConstants.FIRST_DIMENSION_EFFECT, InitGameConstants.FIRST_DIMENSION_QTYGENERATEDPERTICK),
         ];
     }
     GameData.prototype.addDimension = function () {

@@ -1,16 +1,14 @@
-import {Dimension} from "./Dimension";
-import {InitGameConstants} from "./../constants/init/InitGameConstants";
+import { Dimension } from "./Dimension";
+import { InitGameConstants } from "./../constants/init/InitGameConstants";
 
 export class GameData {
-
   number: number;
 
   tickLength: number;
 
   lstDimension: Dimension[];
 
-  constructor () {
-
+  constructor() {
     this.number = InitGameConstants.INIT_NUMBER;
     this.tickLength = InitGameConstants.TICK_LENGTH;
     this.lstDimension = [
@@ -21,17 +19,14 @@ export class GameData {
         InitGameConstants.FIRST_DIMENSION_PRICE,
         InitGameConstants.FIRST_DIMENSION_EFFECT,
         InitGameConstants.FIRST_DIMENSION_QTYGENERATEDPERTICK
-      )
+      ),
     ];
-
   }
 
-  addDimension () {
-
+  addDimension() {
     // eslint-disable-next-line no-magic-numbers
-    const lastDimension: Dimension = this.lstDimension[this.lstDimension.length - 1] as Dimension;
+    const lastDimension: Dimension = this.lstDimension[this.lstDimension.length - 1]!;
     this.lstDimension.push(Dimension.nextDimension(lastDimension));
-
   }
 
   /*
@@ -95,6 +90,4 @@ export class GameData {
    *
    *}
    */
-
-
 }

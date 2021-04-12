@@ -88,7 +88,6 @@
  * );
  */
 
-
 /*
  * Document.getElementById("buttontest")?.addEventListener(
  *   "click",
@@ -144,7 +143,6 @@
  *   , game.tickLength
  * );
  */
-
 
 // // eslint-disable-next-line max-params
 // Window.onerror = (_message, _source, _lineno, _colno, error) => {
