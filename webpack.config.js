@@ -46,6 +46,6 @@ module.exports = (env) => {
       extensions: ['.tsx', '.ts', '.js'],
     },
   };
-  
+
   return config;
 };

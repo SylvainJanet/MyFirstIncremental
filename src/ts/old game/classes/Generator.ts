@@ -1,21 +1,23 @@
-import {GameData} from "./GameData";
+// Import {GameData} from "./GameData";
 
-const msPerSec = 1000;
+// Const msPerSec = 1000;
 
-export class Generator {
+// Export class Generator {
 
-  game: GameData;
+//   Game: GameData;
 
-  nbrPerSec: number;
+//   NbrPerSec: number;
 
-  nbrPerTick: number;
+//   NbrPerTick: number;
 
-  constructor (game: GameData, nbrPerSec: number) {
+//   Constructor (game: GameData, nbrPerSec: number) {
 
-    this.game = game;
-    this.nbrPerSec = nbrPerSec;
-    this.nbrPerTick = nbrPerSec * game.tickLength / msPerSec;
+/*
+ *     This.game = game;
+ *     this.nbrPerSec = nbrPerSec;
+ *     this.nbrPerTick = nbrPerSec * game.tickLength / msPerSec;
+ */
 
-  }
+//   }
 
-}
+// }

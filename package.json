@@ -7,7 +7,9 @@
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "babel-eslint": "^10.1.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-html": "^6.1.2",
+    "live-server": "^1.2.1",
     "typescript-logging": "^1.0.0",
     "watch": "^1.0.2"
   },
@@ -16,6 +18,7 @@
     "css-loader": "^5.2.0",
     "eslint": "^7.23.0",
     "html-webpack-plugin": "^5.3.1",
+    "prettier": "^2.2.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.3",
@@ -29,7 +32,11 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.ts\"",
+    "liveserver": "live-server --open=dist/index.html"
   },
   "repository": {
     "type": "git",

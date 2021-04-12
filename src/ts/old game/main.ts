@@ -1,139 +1,170 @@
-import {Dimension} from "./classes/Dimension.js";
-import {ErrorCode} from "./../exceptions/errorCode";
-import {ErrorCustom} from "./../exceptions/errorCustom";
-import {ErrorMessages} from "./../exceptions/errorMessages";
-import {ErrorType} from "./../exceptions/errorType";
-import {GameData} from "./classes/GameData.js";
-import {Generator} from "./classes/Generator";
-import {InitGeneratorConstants} from "./constants/Init/InitGeneratorConstants";
-import {Log} from "./../log/config";
-import {TypeHelper} from "./../helpers/TypeHelper";
-import {UserUpdate} from "../events/emitters/UserUpdate.js";
+/* eslint-disable multiline-comment-style */
+/*
+ * Import {Dimension} from "./classes/Dimension.js";
+ * import {ErrorCode} from "./../exceptions/errorCode";
+ * import {ErrorCustom} from "./../exceptions/errorCustom";
+ * import {ErrorMessages} from "./../exceptions/errorMessages";
+ * import {ErrorType} from "./../exceptions/errorType";
+ * import {GameData} from "./classes/GameData.js";
+ * import {Generator} from "./classes/Generator";
+ * import {InitGeneratorConstants} from "./constants/Init/InitGeneratorConstants";
+ * import {Log} from "./../log/config";
+ * import {TypeHelper} from "./../helpers/TypeHelper";
+ * import {UserUpdate} from "../events/emitters/UserUpdate.js";
+ */
 
-const game = new GameData();
+// Const game = new GameData();
 
-function displayDimensions () {
+// Function displayDimensions () {
 
-  const divDims = document.getElementById("dimensions");
+//   Const divDims = document.getElementById("dimensions");
 
-  if (divDims !== null) {
+//   If (divDims !== null) {
 
-    divDims.innerHTML = "";
+//     DivDims.innerHTML = "";
 
-    game.lstDimension.forEach((dim: Dimension) => {
+//     Game.lstDimension.forEach((dim: Dimension) => {
 
-      divDims.appendChild(dim.getDisplayNode());
+//       DivDims.appendChild(dim.getDisplayNode());
 
-    });
+//     });
 
-    divDims.appendChild(game.getNextDimensionNode());
+//     DivDims.appendChild(game.getNextDimensionNode());
 
-  }
+//   }
 
-}
+// }
 
-function displayNumber () {
+// Function displayNumber () {
 
-  const pNumber = document.getElementById("number");
-  if (pNumber !== null) {
+/*
+ *   Const pNumber = document.getElementById("number");
+ *   if (pNumber !== null) {
+ */
 
-    pNumber.innerText = Math.floor(game.number).toString();
+//     PNumber.innerText = Math.floor(game.number).toString();
 
-  }
+//   }
 
-}
+// }
 
-function displayNbrDimension () {
+// Function displayNbrDimension () {
 
-  const sNbrDim = document.getElementById("nbrGenerators");
-  if (sNbrDim !== null) {
+/*
+ *   Const sNbrDim = document.getElementById("nbrGenerators");
+ *   if (sNbrDim !== null) {
+ */
 
-    sNbrDim.innerText = game.lstGenerator.length.toString();
+//     SNbrDim.innerText = game.lstGenerator.length.toString();
 
-  }
+//   }
 
-}
+// }
 
-window.onload = () => {
+// Window.onload = () => {
 
-  displayDimensions();
-  displayNumber();
-  displayNbrDimension();
+/*
+ *   DisplayDimensions();
+ *   displayNumber();
+ *   displayNbrDimension();
+ */
 
-};
+// };
 
-document.addEventListener(
-  "updateEvent",
-  () => {
+/*
+ * Document.addEventListener(
+ *   "updateEvent",
+ *   () => {
+ */
 
-    displayDimensions();
-    displayNumber();
-    displayNbrDimension();
+/*
+ *     DisplayDimensions();
+ *     displayNumber();
+ *     displayNbrDimension();
+ */
 
-  }
-);
+/*
+ *   }
+ * );
+ */
 
+/*
+ * Document.getElementById("buttontest")?.addEventListener(
+ *   "click",
+ *   () => {
+ */
 
-document.getElementById("buttontest")?.addEventListener(
-  "click",
-  () => {
+/*
+ *     Throw new ErrorCustom(
+ *       ErrorType.Test,
+ *       ErrorCode.TEST,
+ *       ErrorMessages.TEST
+ *     );
+ */
 
-    throw new ErrorCustom(
-      ErrorType.Test,
-      ErrorCode.TEST,
-      ErrorMessages.TEST
-    );
+/*
+ *   }
+ * );
+ */
 
-  }
-);
+/*
+ * Document.getElementById("testgenerators")?.addEventListener(
+ *   "click",
+ *   () => {
+ */
 
-document.getElementById("testgenerators")?.addEventListener(
-  "click",
-  () => {
+/*
+ *     Game.lstGenerator.push(new Generator(
+ *       game,
+ *       InitGeneratorConstants.NBR_PER_SEC
+ *     ));
+ *     UserUpdate.update();
+ */
 
-    game.lstGenerator.push(new Generator(
-      game,
-      InitGeneratorConstants.NBR_PER_SEC
-    ));
-    UserUpdate.update();
+/*
+ *   }
+ * );
+ */
 
-  }
-);
+// // Const mainGameLoop =
+// SetInterval(
+//   () => {
 
-// Const mainGameLoop =
-setInterval(
-  () => {
+//     Game.lstGenerator.forEach((generator: Generator) => {
 
-    game.lstGenerator.forEach((generator: Generator) => {
+//       Game.number += generator.nbrPerTick;
 
-      game.number += generator.nbrPerTick;
+//     });
 
-    });
+//     UserUpdate.update();
 
-    UserUpdate.update();
+/*
+ *   }
+ *   , game.tickLength
+ * );
+ */
 
-  }
-  , game.tickLength
-);
+// // eslint-disable-next-line max-params
+// Window.onerror = (_message, _source, _lineno, _colno, error) => {
 
+//   If (TypeHelper.isErrorCustom(error)) {
 
-// eslint-disable-next-line max-params
-window.onerror = (_message, _source, _lineno, _colno, error) => {
+//     Const errorCustom = (error as unknown) as ErrorCustom;
 
-  if (TypeHelper.isErrorCustom(error)) {
+/*
+ *     Log.error(
+ *       ErrorCustom.getLogErrorMessage(errorCustom),
+ *       errorCustom
+ *     );
+ */
 
-    const errorCustom = (error as unknown) as ErrorCustom;
+//     Return true;
 
-    Log.error(
-      ErrorCustom.getLogErrorMessage(errorCustom),
-      errorCustom
-    );
+//   }
 
-    return true;
+/*
+ *   Console.log("erreur non capturée");
+ *   return false;
+ */
 
-  }
-
-  console.log("erreur non capturée");
-  return false;
-
-};
+// };
