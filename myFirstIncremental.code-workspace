@@ -6,5 +6,62 @@
   ],
   "settings": {
     "git.ignoreLimitWarning": true
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "npm",
+        "script": "lint:fix",
+        "problemMatcher": [],
+        "label": "npm: lint:fix",
+        "detail": "eslint . --fix",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "type": "npm",
+        "script": "format",
+        "problemMatcher": [],
+        "label": "npm: format",
+        "detail": "prettier --write \"**/*.ts\"",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "type": "npm",
+        "script": "watch",
+        "group": "build",
+        "problemMatcher": [],
+        "label": "npm: watch",
+        "detail": "webpack --watch",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "type": "typescript",
+        "tsconfig": "tsconfig.json",
+        "option": "watch",
+        "problemMatcher": ["$tsc-watch"],
+        "group": "build",
+        "label": "tsc: espion - tsconfig.json",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "type": "npm",
+        "script": "liveserver",
+        "problemMatcher": [],
+        "label": "npm: liveserver",
+        "detail": "live-server --open=dist/index.html",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      }
+    ]
   }
 }

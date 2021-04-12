@@ -9,6 +9,7 @@
     "babel-eslint": "^10.1.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-html": "^6.1.2",
+    "live-server": "^1.2.1",
     "typescript-logging": "^1.0.0",
     "watch": "^1.0.2"
   },
@@ -34,7 +35,8 @@
     "serve": "webpack serve",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.ts\""
+    "format": "prettier --write \"**/*.ts\"",
+    "liveserver": "live-server --open=dist/index.html"
   },
   "repository": {
     "type": "git",
