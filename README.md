@@ -13,3 +13,7 @@ yarn build
 ```
 
 to bundle your application
+
+## npx prettier --write "**/*.ts"
+
+Format all ts files in the current directory
