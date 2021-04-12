@@ -1,35 +1,30 @@
 import { ErrorCustom } from "./errorCustom.js";
 import { TypeHelper } from "./../helpers/TypeHelper.js";
-var ErrorService = (function () {
-    function ErrorService() {
-    }
-    ErrorService.getErrorType = function () {
-        return ErrorService.errorCustom.type;
-    };
-    ErrorService.getErrorMessage = function () {
-        return ErrorService.errorCustom.message;
-    };
-    ErrorService.getErrorCode = function () {
-        return ErrorService.errorCustom.code;
-    };
-    ErrorService.setError = function (type, code, message) {
-        ErrorService.errorCustom = new ErrorCustom(type, code, message);
-    };
-    ErrorService.setErrorCustom = function (error) {
-        ErrorService.errorCustom = error;
-    };
-    ErrorService.dealtWith = function () {
-        ErrorService.errorCustom = ErrorCustom.getSolvedError();
-    };
-    ErrorService.dealWith = function () {
-        var res = new ErrorCustom(ErrorService.getErrorType(), ErrorService.getErrorCode(), ErrorService.getErrorMessage());
-        ErrorService.dealtWith();
+export var ErrorService = {
+    dealWith: function () {
+        var dealtWith = function () {
+            ErrorService.errorCustom = ErrorCustom.getSolvedError();
+        }, res = new ErrorCustom(ErrorService.getErrorType(), ErrorService.getErrorCode(), ErrorService.getErrorMessage());
+        dealtWith();
         return res;
-    };
-    ErrorService.errorCustom = ErrorCustom.getSolvedError();
-    return ErrorService;
-}());
-export { ErrorService };
+    },
+    errorCustom: ErrorCustom.getSolvedError(),
+    getErrorCode: function () {
+        return ErrorService.errorCustom.code;
+    },
+    getErrorMessage: function () {
+        return ErrorService.errorCustom.message;
+    },
+    getErrorType: function () {
+        return ErrorService.errorCustom.type;
+    },
+    setError: function (type, code, message) {
+        ErrorService.errorCustom = new ErrorCustom(type, code, message);
+    },
+    setErrorCustom: function (error) {
+        ErrorService.errorCustom = error;
+    },
+};
 export var errorServiceLoader = function (error) {
     if (TypeHelper.isErrorCustom(error)) {
         var errorCustom = error;

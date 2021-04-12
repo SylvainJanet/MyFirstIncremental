@@ -1,27 +1,27 @@
 import { DimensionFormulas } from "./../constants/Formulas/DimensionFormulas";
-import type { GameData } from "./GameData";
+import { GameData } from "./GameData";
 import { InitDimensionConstants } from "./../constants/init/InitDimensionConstants";
 
 export enum DimensionEffect {
-  Number,
-  PreviousDimension,
+  Number = "Number",
+  PreviousDimension = "PreviousDimension",
 }
 
 export class Dimension {
-  game: GameData;
+  public game: GameData;
 
-  dimensionNbr: number;
+  public dimensionNbr: number;
 
-  qty: number;
+  public qty: number;
 
-  price: number;
+  public price: number;
 
-  effect: DimensionEffect;
+  public effect: DimensionEffect;
 
-  qtyGeneratedPerTick: number;
+  public qtyGeneratedPerTick: number;
 
-  // eslint-disable-next-line max-params
-  constructor(game: GameData, dimensionNbr: number, qty: number, price: number, effect: DimensionEffect, qtyGeneratedPerTick: number) {
+  // // eslint-disable-next-line max-params
+  public constructor(game: GameData, dimensionNbr: number, qty: number, price: number, effect: DimensionEffect, qtyGeneratedPerTick: number) {
     this.game = game;
     this.dimensionNbr = dimensionNbr;
     this.qty = qty;
@@ -30,15 +30,20 @@ export class Dimension {
     this.qtyGeneratedPerTick = qtyGeneratedPerTick;
   }
 
-  static nextDimension(dimension: Dimension): Dimension {
+  public static nextDimension(dimension: Dimension): Dimension {
     return new Dimension(
       dimension.game,
-      // eslint-disable-next-line no-magic-numbers
+      // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       dimension.dimensionNbr + 1,
       InitDimensionConstants.INIT_QTY_ON_CREATION,
       DimensionFormulas.nextPrice(dimension.price),
       DimensionFormulas.nextEffect(dimension.effect, dimension.dimensionNbr),
       DimensionFormulas.nextQtyPGeneratedPerTick(dimension.qtyGeneratedPerTick)
     );
+  }
+
+  public static getdefaultDimension(): Dimension {
+    // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    return new Dimension(GameData.getDefaultGameData(), -1, -1, -1, DimensionEffect.Number, -1);
   }
 }

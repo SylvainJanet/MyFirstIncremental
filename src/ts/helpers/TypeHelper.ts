@@ -1,7 +1,10 @@
+// /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+// /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+// /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ErrorType } from "./../exceptions/errorType.js";
 
-export class TypeHelper {
-  static isErrorCustom(object: any): boolean {
+export const TypeHelper = {
+  isErrorCustom(object: any): boolean {
     return (
       object !== null &&
       typeof object !== "undefined" &&
@@ -10,9 +13,9 @@ export class TypeHelper {
       typeof object.code === "number" &&
       typeof object.message === "string"
     );
-  }
+  },
 
-  static isErrorType(object: any): boolean {
+  isErrorType(object: any): boolean {
     return object !== null && typeof object !== "undefined" && Boolean(object in ErrorType);
-  }
-}
+  },
+};

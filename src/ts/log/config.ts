@@ -7,7 +7,7 @@ import { Category, CategoryConfiguration, CategoryServiceFactory, LogLevel } fro
 CategoryServiceFactory.setDefaultConfiguration(new CategoryConfiguration(LogLevel.Trace));
 
 // Create categories, they will autoregister themselves, one category without parent (root) and a child category.
-export const log = new Category("log");
+export const Log = new Category("log");
 
 /*
  * Optionally get a logger for a category, since 0.5.0 this is not necessary anymore, you can use the category itself to log.

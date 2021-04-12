@@ -3,27 +3,19 @@ import { ErrorMessages } from "./errorMessages";
 import { ErrorType } from "./errorType.js";
 
 export class ErrorCustom extends Error {
-  type: ErrorType;
+  public type: ErrorType;
 
-  code: number;
+  public code: number;
 
-  message: string;
+  public message: string;
 
-  name = "ErrorCustom";
+  public name = "ErrorCustom";
 
-  constructor(type: ErrorType, code: number, message: string) {
+  public constructor(type: ErrorType, code: number, message: string) {
     super();
     this.type = type;
     this.code = code;
     this.message = message;
-  }
-
-  public static getLogErrorMessage(error: ErrorCustom): string {
-    return `Error - type ${ErrorType[error.type]} - code ${error.code} - ${error.message}`;
-  }
-
-  public getLogErrorMessage(): string {
-    return ErrorCustom.getLogErrorMessage(this);
   }
 
   public static getSolvedError(): ErrorCustom {
@@ -32,6 +24,14 @@ export class ErrorCustom extends Error {
 
   public static isSolved(error: ErrorCustom): boolean {
     return error.type === ErrorType.None && error.code === ErrorCode.NO_ERROR && error.message === ErrorMessages.EMPTY;
+  }
+
+  public static getLogErrorMessage(error: ErrorCustom): string {
+    return `Error - type ${ErrorType[error.type]} - code ${error.code} - ${error.message}`;
+  }
+
+  public getLogErrorMessage(): string {
+    return ErrorCustom.getLogErrorMessage(this);
   }
 
   public isSolved(): boolean {
