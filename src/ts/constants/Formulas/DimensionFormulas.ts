@@ -5,7 +5,6 @@ export const DimensionFormulas = {
   QTYGENERATEDPERTICK_MULT: 2,
 
   nextEffect(effect: DimensionEffect, dimensionNbr: number): DimensionEffect {
-    // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (dimensionNbr > 1) {
       return effect;
     }
