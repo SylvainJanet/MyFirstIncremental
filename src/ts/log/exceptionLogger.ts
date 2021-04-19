@@ -19,7 +19,6 @@ const NOT_CUSTOM_ERROR = "not custom error",
     Log.fatal(UNDEFINED_ERROR, new Error());
   };
 
-// eslint-disable-next-line max-params
 export const exceptionLogger = (error: Error | undefined): boolean => {
   if (TypeHelper.isErrorCustom(error)) {
     logErrorCustom((error as unknown) as ErrorCustom);

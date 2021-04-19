@@ -28,7 +28,6 @@ export class GameData {
   }
 
   public addDimension(): void {
-    // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const lastDimension: Dimension = this.lstDimension[this.lstDimension.length - 1] ?? Dimension.getdefaultDimension();
     this.lstDimension.push(Dimension.nextDimension(lastDimension));
   }
