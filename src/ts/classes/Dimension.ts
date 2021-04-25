@@ -20,7 +20,6 @@ export class Dimension {
 
   public qtyGeneratedPerTick: number;
 
-  // // eslint-disable-next-line max-params
   public constructor(game: GameData, dimensionNbr: number, qty: number, price: number, effect: DimensionEffect, qtyGeneratedPerTick: number) {
     this.game = game;
     this.dimensionNbr = dimensionNbr;
@@ -33,7 +32,6 @@ export class Dimension {
   public static nextDimension(dimension: Dimension): Dimension {
     return new Dimension(
       dimension.game,
-      // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       dimension.dimensionNbr + 1,
       InitDimensionConstants.INIT_QTY_ON_CREATION,
       DimensionFormulas.nextPrice(dimension.price),
@@ -43,7 +41,6 @@ export class Dimension {
   }
 
   public static getdefaultDimension(): Dimension {
-    // // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     return new Dimension(GameData.getDefaultGameData(), -1, -1, -1, DimensionEffect.Number, -1);
   }
 }

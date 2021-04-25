@@ -32,21 +32,26 @@
       }
     ],
     "no-console": "off",
-    "one-var": "off"
-    // //"@typescript-eslint/rule-name": "error",
-    // "no-shadow": "off",
-    // "@typescript-eslint/no-shadow": "error",
-    // "no-unused-vars": "off",
-    // "@typescript-eslint/no-unused-vars": ["error"],
-    // "indent": ["error", 2],
-    // "linebreak-style": ["error", "windows"],
-    // "semi": ["error", "always"],
-    // "func-style": [
-    //   2,
-    //   "declaration",
-    //   {
-    //     "allowArrowFunctions": true
-    //   }
-    // ]
+    "one-var": "off",
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "error",
+      {
+        "allowedNames": ["isErrorCustom", "isErrorType"]
+      }
+    ],
+    "@typescript-eslint/no-magic-numbers": [
+      "error",
+      {
+        "ignore": [1, -1]
+      }
+    ],
+    "max-params": [
+      "error",
+      {
+        "max": 6
+      }
+    ],
+    "sort-imports": "off",
+    "sort-keys": "off"
   }
 }
