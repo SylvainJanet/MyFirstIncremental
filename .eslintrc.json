@@ -50,6 +50,8 @@
       {
         "max": 6
       }
-    ]
+    ],
+    "sort-imports": "off",
+    "sort-keys": "off"
   }
 }
