@@ -1,16 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ISavingSystem00 } from "../_interfaces/ISavingSystem00";
+import { SavingVersion } from "./../../../SavingVersion";
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { SavingVersion } from "./../../SavingVersion";
-import { SavingConstants00 } from "./SavingConstants00";
-import { SaveData00 } from "./SaveData00";
+import { SaveData001 } from "./SaveData001";
+import { SavingConstants001 } from "./SavingConstants001";
 
-export const SavingSystem00 = {
-  saveData: SaveData00.prototype,
-  saveDataType: SaveData00,
-  savingConstants: SavingConstants00,
-  version: SavingVersion["0.0"],
+export const SavingSystem001: ISavingSystem00 = {
+  saveData: SaveData001.getSaveData(),
+  saveDataType: SaveData001,
+  savingConstants: SavingConstants001,
+  version: SavingVersion["0.0.1"],
 
   save(): void {
     this.saveData = this.saveDataType.getSaveData();
@@ -36,7 +37,7 @@ export const SavingSystem00 = {
   },
 
   loadActualSave(actualSave: any): void {
-    if (actualSave.version !== SavingVersion["0.0"]) {
+    if (actualSave.version < this.version) {
       console.log("incompatible version");
     }
     this.saveData = actualSave;
