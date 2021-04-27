@@ -52,6 +52,7 @@
       }
     ],
     "sort-imports": "off",
-    "sort-keys": "off"
+    "sort-keys": "off",
+    "no-warning-comments": "warn"
   }
 }

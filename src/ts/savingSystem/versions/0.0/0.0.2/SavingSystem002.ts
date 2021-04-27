@@ -1,19 +1,20 @@
-import type { SaveData00 } from "./../0.0/SaveData00";
+import { SaveConverter002 } from "./SaveConverter002";
+import { SaveData002 } from "./SaveData002";
+import { SavingConstants002 } from "./SavingConstants002";
+import { SaveData001 } from "../0.0.1/SaveData001";
+import { SavingVersion } from "../../../SavingVersion";
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { SavingVersion } from "./../../SavingVersion";
-import { SaveConverter001 } from "./SaveConverter001";
-import { SaveData001 } from "./SaveData001";
-import { SavingConstants001 } from "./SavingConstants001";
 
-export const SavingSystem001 = {
-  saveData: SaveData001.prototype,
-  saveDataType: SaveData001,
-  savingConstants: SavingConstants001,
-  version: SavingVersion["0.0.1"],
-  saveConverter: SaveConverter001,
+export const SavingSystem002 = {
+  saveData: SaveData002.prototype,
+  saveDataType: SaveData002,
+  savingConstants: SavingConstants002,
+  version: SavingVersion["0.0.2"],
+  saveConverter: SaveConverter002,
+  previousSaveData: SaveData001.prototype,
 
   save(): void {
     this.saveData = this.saveDataType.getSaveData();
@@ -38,16 +39,26 @@ export const SavingSystem001 = {
     this.loadActualSave(anyObjectSaved);
   },
 
-  loadActualSave(actualSave: any): void {
-    if (actualSave.version === SavingVersion["0.0"]) {
-      // eslint-disable-next-line no-param-reassign
-      actualSave = this.saveConverter.convert(actualSave as SaveData00);
+  loadActualSave(actualSaveInput: any): void {
+    let actualSave = actualSaveInput;
+    if (actualSave.version < this.version) {
+      actualSave = this.loadActualPreviousSave(actualSave);
     }
-    if (actualSave.version === SavingVersion["0.0.1"]) {
+    if (actualSave.version === this.version) {
       this.saveData = actualSave;
       this.saveDataType.loadSaveData(this.saveData);
       return;
     }
     console.log("incompatible version");
+  },
+
+  loadActualPreviousSave(actualSaveInput: any): any {
+    let actualSave = actualSaveInput;
+    if (actualSave.version < this.version - 1) {
+      actualSave = this.loadActualPreviousSave(actualSave);
+    }
+    if (actualSave.version === this.version - 1) {
+      actualSave = this.saveConverter.convert(actualSave as SaveData001);
+    }
   },
 };
