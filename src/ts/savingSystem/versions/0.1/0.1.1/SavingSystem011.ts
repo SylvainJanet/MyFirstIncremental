@@ -1,20 +1,19 @@
-import type { SaveData00 } from "./../0.0/SaveData00";
-import { SaveConverter002 } from "./SaveConverter002";
-import { SavingVersion } from "./../../SavingVersion";
-import { SaveData002 } from "./SaveData002";
-import { SavingConstants002 } from "./SavingConstants002";
-import type { SaveData001 } from "../0.0.1/SaveData001";
+import { SaveDataInstance011, SaveDataStatic011 } from "./SaveData011";
+import { SavingConstants011 } from "./SavingConstants011";
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-export const SavingSystem002 = {
-  saveData: SaveData002.prototype,
-  saveDataType: SaveData002,
-  savingConstants: SavingConstants002,
-  version: SavingVersion["0.0.2"],
-  saveConverter: SaveConverter002,
+import { SavingVersion } from "../../../SavingVersion";
+import type { ISavingSystem01 } from "../_interfaces/ISavingSystem01";
+
+export const SavingSystem010: ISavingSystem01 = {
+  saveData: SaveDataInstance011,
+  saveDataType: SaveDataStatic011,
+  savingConstants: SavingConstants011,
+  version: SavingVersion["0.1.1"],
+  // SaveConverter: SaveConverter010,
 
   save(): void {
     this.saveData = this.saveDataType.getSaveData();
@@ -39,16 +38,14 @@ export const SavingSystem002 = {
     this.loadActualSave(anyObjectSaved);
   },
 
-  loadActualSave(actualSave: any): void {
-    if (actualSave.version === SavingVersion["0.0"]) {
-      // eslint-disable-next-line no-param-reassign
-      actualSave = this.saveConverter.convert00(actualSave as SaveData00);
-    }
-    if (actualSave.version === SavingVersion["0.0.1"]) {
-      // eslint-disable-next-line no-param-reassign
-      actualSave = this.saveConverter.convert001(actualSave as SaveData001);
-    }
-    if (actualSave.version === SavingVersion["0.0.2"]) {
+  loadActualSave(actualSaveInput: any): void {
+    const actualSave = actualSaveInput;
+    /*
+     * If (actualSave.version < this.version) {
+     *   actualSave = this.saveConverter.convert(actualSave as SaveData010);
+     * }
+     */
+    if (actualSave.version === this.version) {
       this.saveData = actualSave;
       this.saveDataType.loadSaveData(this.saveData);
       return;
