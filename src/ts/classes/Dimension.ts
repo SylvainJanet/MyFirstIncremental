@@ -20,7 +20,14 @@ export class Dimension {
 
   public qtyGeneratedPerTick: number;
 
-  public constructor(game: GameData, dimensionNbr: number, qty: number, price: number, effect: DimensionEffect, qtyGeneratedPerTick: number) {
+  public constructor(
+    game: GameData,
+    dimensionNbr: number,
+    qty: number,
+    price: number,
+    effect: DimensionEffect,
+    qtyGeneratedPerTick: number
+  ) {
     this.game = game;
     this.dimensionNbr = dimensionNbr;
     this.qty = qty;
