@@ -1,4 +1,4 @@
 export enum ErrorType {
-  Test = "Test",
   None = "None",
+  SaveIntegrity = "SaveIntegrity",
 }
