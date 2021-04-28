@@ -22,13 +22,21 @@
       {
         "selector": ["variable"],
         "modifiers": ["exported"],
-        "format": ["PascalCase"]
+        "format": ["PascalCase"],
+        "filter": {
+          "regex": "_[0-9]+$",
+          "match": false
+        }
       },
       {
         "selector": ["variable"],
         "types": ["function"],
         "modifiers": ["exported"],
-        "format": ["camelCase"]
+        "format": ["camelCase"],
+        "filter": {
+          "regex": "",
+          "match": true
+        }
       }
     ],
     "no-console": "off",
@@ -53,6 +61,18 @@
     ],
     "sort-imports": "off",
     "sort-keys": "off",
-    "no-warning-comments": "warn"
+    "no-warning-comments": "warn",
+    "camelcase": [
+      "error",
+      {
+        "allow": ["_[0-9]+$"]
+      }
+    ],
+    "new-cap": [
+      "error",
+      {
+        "capIsNew": false
+      }
+    ]
   }
 }
