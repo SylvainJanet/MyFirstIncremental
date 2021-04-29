@@ -34,8 +34,8 @@
         "modifiers": ["exported"],
         "format": ["camelCase"],
         "filter": {
-          "regex": "",
-          "match": true
+          "regex": "_[0-9]+$",
+          "match": false
         }
       }
     ],
