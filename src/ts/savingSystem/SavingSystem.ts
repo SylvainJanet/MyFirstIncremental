@@ -1,5 +1,5 @@
+// Import { SavingSystem0_0_1 } from "./versions/0.0/0.0.1/SavingSystem0_0_1";
 import { SavingVersion } from "./SavingVersion";
-import { SaveDataInstance0_0_0 } from "./versions/0.0/0.0.0/SaveData0_0_0";
 import { SavingSystem0_0_0 } from "./versions/0.0/0.0.0/SavingSystem0_0_0";
 export const SavingSystem = {
   savingConstants: SavingSystem0_0_0.savingConstants,
@@ -15,7 +15,6 @@ export const SavingSystem = {
     }
     if (this.savingSystem.saveData.version !== this.version) {
       console.log("erreur : mauvaise version : saveData");
-      console.log(typeof SaveDataInstance0_0_0);
     }
   },
 

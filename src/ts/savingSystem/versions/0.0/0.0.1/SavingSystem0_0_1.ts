@@ -7,9 +7,10 @@ import { SavingVersion } from "../../../SavingVersion";
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { SaveDataStatic0_0_1, SaveDataInstance0_0_1 } from "./SaveData0_0_1";
 import { SavingConstants0_0_1 } from "./SavingConstants0_0_1";
+import { isSaveVersioned } from "../../../interfaces/ISaveVersioned";
 
 export const SavingSystem0_0_1: ISavingSystem0_0 = {
-  saveData: SaveDataInstance0_0_1,
+  saveData: SaveDataInstance0_0_1.getSaveData(),
   saveDataType: SaveDataStatic0_0_1,
   savingConstants: SavingConstants0_0_1,
   version: SavingVersion["0.0.1"],
@@ -31,11 +32,9 @@ export const SavingSystem0_0_1: ISavingSystem0_0 = {
 
   loadRawSave(rawObjectSaved: string): void {
     const anyObjectSaved = JSON.parse(rawObjectSaved);
-    if (anyObjectSaved === null || typeof anyObjectSaved.version === "undefined") {
-      console.log("corrupt file");
-      return;
+    if (isSaveVersioned(anyObjectSaved)) {
+      this.loadActualSave(anyObjectSaved);
     }
-    console.log("this.loadActualSave(anyObjectSaved)");
   },
 
   loadActualSave(actualSave: any): void {

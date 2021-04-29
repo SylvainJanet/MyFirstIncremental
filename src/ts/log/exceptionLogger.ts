@@ -8,6 +8,7 @@ const NOT_CUSTOM_ERROR = "not custom error",
   logErrorCustom = (errorCustom: ErrorCustom): void => {
     Log.error(ErrorCustom.getLogErrorMessage(errorCustom), errorCustom);
 
+    // TRAITEMENT D'UNE ERREUR
     // eslint-disable-next-line no-alert
     alert(ErrorCustom.getLogErrorMessage(errorCustom));
     ErrorService.dealWith();
