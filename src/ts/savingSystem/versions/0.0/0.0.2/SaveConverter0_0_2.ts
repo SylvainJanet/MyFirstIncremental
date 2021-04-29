@@ -2,7 +2,7 @@ import type { ISaveDataInstance0_1 } from "./../../0.1/_interfaces/ISaveData0_1"
 import { ErrorCode } from "./../../../../exceptions/errorCode";
 import { ErrorCustom } from "./../../../../exceptions/errorCustom";
 import type { ISaveVersioned } from "./../../../interfaces/ISaveVersioned";
-import { TypeHelperSavingSystem0_0 } from "./../_helper/TypeHelperSavingSystem0_0";
+import { TypeHelperSavingSystem0_0 } from "../_helpers/TypeHelperSavingSystem0_0";
 import { SavingVersion } from "../../../SavingVersion";
 import { SaveConverter0_0_1 } from "../0.0.1/SaveConverter0_0_1";
 import type { ISaveConverter0_0 } from "../_interfaces/ISaveConverter0_0";

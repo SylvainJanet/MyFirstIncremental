@@ -10,7 +10,7 @@ export interface ISaveVersioned {
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export const isSaveVersioned = (object: any): object is ISaveVersioned => {
-  Log.log(LogLevel.Trace, "***** isSaveVersioned *****", null);
+  Log.log(LogLevel.Debug, "***** isSaveVersioned *****", null);
   Log.log(LogLevel.Trace, "Object is being type checked : ISaveVersioned ?", null);
   Log.log(LogLevel.Trace, JSON.stringify(object), null);
   const result: boolean =
@@ -19,6 +19,6 @@ export const isSaveVersioned = (object: any): object is ISaveVersioned => {
     typeof object !== "undefined" &&
     typeof object.version !== "undefined" &&
     typeof object.version === "number";
-  Log.log(LogLevel.Trace, `===== result : ${String(result)}`, null);
+  Log.log(LogLevel.Debug, `===== result isSaveVersioned : ${String(result)}`, null);
   return result;
 };

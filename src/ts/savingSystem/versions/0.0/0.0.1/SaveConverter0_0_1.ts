@@ -2,7 +2,6 @@ import type { ISaveDataInstance0_1 } from "./../../0.1/_interfaces/ISaveData0_1"
 import { ErrorCode } from "./../../../../exceptions/errorCode";
 import { ErrorCustom } from "./../../../../exceptions/errorCustom";
 import type { ISaveVersioned } from "./../../../interfaces/ISaveVersioned";
-import { TypeHelperSavingSystem0_0 } from "./../_helper/TypeHelperSavingSystem0_0";
 import type { ISaveDataInstance0_0 } from "../_interfaces/ISaveData0_0";
 import type { ISaveConverter0_0 } from "../_interfaces/ISaveConverter0_0";
 import { SavingVersion } from "../../../SavingVersion";
@@ -10,6 +9,7 @@ import { SaveConverter0_0_0 } from "../0.0.0/SaveConverter0_0_0";
 import { SaveConverter0_0_2 } from "../0.0.2/SaveConverter0_0_2";
 import { ErrorType } from "../../../../exceptions/errorType";
 import { ErrorMessages } from "../../../../exceptions/errorMessages";
+import { TypeHelperSavingSystem0_0 } from "../_helpers/TypeHelperSavingSystem0_0";
 
 export const SaveConverter0_0_1: ISaveConverter0_0 = {
   typeHelper: TypeHelperSavingSystem0_0,
