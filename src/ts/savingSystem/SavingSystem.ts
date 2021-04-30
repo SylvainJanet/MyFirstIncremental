@@ -1,4 +1,3 @@
-// Import { SavingSystem0_0_1 } from "./versions/0.0/0.0.1/SavingSystem0_0_1";
 import { SavingVersion } from "./SavingVersion";
 import { SavingSystem0_0_0 } from "./versions/0.0/0.0.0/SavingSystem0_0_0";
 export const SavingSystem = {
