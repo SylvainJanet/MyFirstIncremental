@@ -1,5 +1,5 @@
 import type { ISavingConstants0_0 } from "./../_interfaces/ISavingConstants0_0";
-import type { ISaveDataStatic0_0 } from "./../_interfaces/ISaveData0_0";
+import type { ISaveDataInstance0_0, ISaveDataStatic0_0 } from "./../_interfaces/ISaveData0_0";
 import { ErrorMessages } from "./../../../../exceptions/errorMessages";
 import { ErrorCode } from "./../../../../exceptions/errorCode";
 import { ErrorType } from "./../../../../exceptions/errorType";
@@ -22,7 +22,9 @@ export const getSavingSystem0_0 = (
   saveDataType: ISaveDataStatic0_0,
   savingConstants: ISavingConstants0_0,
   version: SavingVersion,
-  converter: ISaveConverter0_0
+  converter: ISaveConverter0_0,
+  encryptAndFormatSave: (save: ISaveDataInstance0_0) => string,
+  unformatAndDecryptSave: (file: string) => any
 ): ISavingSystem0_0 => {
   const ErrorHelper = {
     throwErrorSaveNotFound(storageName: string): void {
@@ -35,12 +37,12 @@ export const getSavingSystem0_0 = (
       LogService.removeLevelError(error);
       throw error;
     },
-    throwErrorSaveCorruptNoVersion(): void {
+    throwErrorSaveCorruptNoVersion(object: any): void {
       LogService.addLevel("throwErrorSaveCorruptNoVersion");
       const error = new ErrorCustom(
         ErrorType.SaveIntegrity,
         ErrorCode.SAVINGSYSTEM_LOADRAWSAVE_NOVERSION,
-        ErrorMessages.SAVINGSYSTEM_LOADRAWSAVE_NOVERSION
+        ErrorMessages.SAVINGSYSTEM_LOADRAWSAVE_NOVERSION(object)
       );
       LogService.removeLevelError(error);
       throw error;
@@ -68,8 +70,8 @@ export const getSavingSystem0_0 = (
       LogService.addLevel("AbstractSavingSystem0_0.save");
       LogService.log(LogLevel.Trace, "create save data", null);
       this.saveData = this.saveDataType.getSaveData();
-      LogService.log(LogLevel.Trace, "put save data in localStorage", null);
-      localStorage.setItem(this.savingConstants.storageName, JSON.stringify(this.saveData));
+      LogService.log(LogLevel.Trace, "put save data in localStorage after encryption and format", null);
+      localStorage.setItem(this.savingConstants.storageName, encryptAndFormatSave(this.saveData));
       LogService.removeLevelVoid();
     },
 
@@ -88,15 +90,15 @@ export const getSavingSystem0_0 = (
 
     loadRawSave(rawObjectSaved: string): void {
       LogService.addLevel("AbstractSavingSystem0_0.loadRawSave");
-      LogService.log(LogLevel.Trace, "parse JSON object", null);
-      const anyObjectSaved = JSON.parse(rawObjectSaved);
+      LogService.log(LogLevel.Trace, "unformat and decrypt object", null);
+      const anyObjectSaved = unformatAndDecryptSave(rawObjectSaved);
       LogService.log(LogLevel.Trace, "check version exists", null);
       if (isSaveVersioned(anyObjectSaved)) {
         this.loadActualSave(anyObjectSaved);
         LogService.removeLevelVoid();
         return;
       }
-      ErrorHelper.throwErrorSaveCorruptNoVersion();
+      ErrorHelper.throwErrorSaveCorruptNoVersion(anyObjectSaved);
     },
 
     // eslint-disable-next-line max-statements

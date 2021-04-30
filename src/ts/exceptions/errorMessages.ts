@@ -50,7 +50,10 @@ export const ErrorMessages = {
   object : \
   ${JSON.stringify(object)}`,
   SAVINGSYSTEM_LOAD_NOSAVEFOUND: (storageName: string): string => `Nothing in localStorage was found with key ${storageName}`,
-  SAVINGSYSTEM_LOADRAWSAVE_NOVERSION: "Corrupt save : doesn't have a version",
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  SAVINGSYSTEM_LOADRAWSAVE_NOVERSION: (object: any): string => `Corrupt save : doesn't have a version \
+  object : \
+  ${JSON.stringify(object)}`,
   SAVINGSYSTEM_LOADACTUALSAVE_CORRUPT_FORMATORVERSION: (save: ISaveVersioned): string =>
     `Corrupt save : either bad format or bad version\
     save\
