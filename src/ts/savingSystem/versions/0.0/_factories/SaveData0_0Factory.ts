@@ -2,8 +2,8 @@
 import type { ISavingConstants0_0 } from "./../_interfaces/ISavingConstants0_0";
 import { LogLevel } from "typescript-logging";
 import type { ISaveDataInstance0_0, ISaveDataStatic0_0 } from "../_interfaces/ISaveData0_0";
-import { Log } from "../../../../log/config";
 import { SavingVersion } from "../../../SavingVersion";
+import { LogService } from "../../../../log/logService";
 
 class SaveDataInstance0_0 implements ISaveDataInstance0_0 {
   public version = SavingVersion["0.0.0"];
@@ -32,14 +32,9 @@ export const getSaveDataInstance0_0 = (
 ): typeof SaveDataInstance0_0 => {
   const ErrorHelper = {
     checkElementIdExists(element: HTMLElement | null): element is HTMLElement {
-      Log.log(LogLevel.Debug, "***** checkElementIdExists *****", null);
-      if (element === null) {
-        const result = false;
-        Log.log(LogLevel.Debug, `===== result checkElementIdExists : ${String(result)}`, null);
-        return result;
-      }
-      const result = true;
-      Log.log(LogLevel.Debug, `===== result checkElementIdExists : ${String(result)}`, null);
+      LogService.addLevel("checkElementIdExists");
+      const result = element !== null;
+      LogService.removeLevelResultPrimitive(result);
       return result;
     },
   };
@@ -50,44 +45,44 @@ export const getSaveDataInstance0_0 = (
     public value1: string;
 
     public constructor(value1: string) {
-      Log.log(LogLevel.Trace, "new instance of SaveDataInstance created", null);
+      LogService.log(LogLevel.Trace, "new instance of SaveDataInstance created", null);
       this.value1 = value1;
     }
 
     // eslint-disable-next-line max-statements
     public static getSaveData(): ISaveDataInstance0_0 {
-      Log.log(LogLevel.Debug, "***** getSaveData *****", null);
-      Log.log(LogLevel.Trace, `get element with id ${savingConstants.idValue1}`, null);
+      LogService.addLevel("SaveDataInstance.getSaveData");
+      LogService.log(LogLevel.Trace, `get element with id ${savingConstants.idValue1}`, null);
       const elementValue1 = document.getElementById(savingConstants.idValue1);
       if (ErrorHelper.checkElementIdExists(elementValue1)) {
-        Log.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} found`, null);
+        LogService.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} found`, null);
         const value1 = (elementValue1 as HTMLInputElement).value;
-        Log.log(LogLevel.Trace, `value read : ${value1}`, null);
+        LogService.log(LogLevel.Trace, `value read : ${value1}`, null);
         const result = new SaveDataInstance(changeValueBeforeSave(value1));
-        Log.log(LogLevel.Debug, `===== result getSaveData : ${JSON.stringify(result)}`, null);
+        LogService.removeLevelResultObject(result);
         return result;
       }
-      Log.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} not found. Using default value instead`, null);
+      LogService.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} not found. Using default value instead`, null);
       const result = new SaveDataInstance(savingConstants.value1Default);
-      Log.log(LogLevel.Debug, `===== result getSaveData : ${JSON.stringify(result)}`, null);
+      LogService.removeLevelResultObject(result);
       return result;
     }
 
     // eslint-disable-next-line max-statements
     public static loadSaveData(save: ISaveDataInstance0_0): void {
-      Log.log(LogLevel.Debug, "***** loadSaveData *****", null);
-      Log.log(LogLevel.Trace, `save : ${JSON.stringify(save)}`, null);
-      Log.log(LogLevel.Trace, `get element with id ${savingConstants.idValue1}`, null);
+      LogService.addLevel("SaveDataInstance.loadSaveData");
+      LogService.log(LogLevel.Trace, `save : ${JSON.stringify(save)}`, null);
+      LogService.log(LogLevel.Trace, `get element with id ${savingConstants.idValue1}`, null);
       const elementValue1 = document.getElementById(savingConstants.idValue1);
       if (ErrorHelper.checkElementIdExists(elementValue1)) {
-        Log.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} found`, null);
+        LogService.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} found`, null);
         (elementValue1 as HTMLInputElement).value = changeBackValueAfterLoad(save.value1);
-        Log.log(LogLevel.Trace, `value put : ${save.value1}`, null);
-        Log.log(LogLevel.Debug, `===== end loadSaveData : OK`, null);
+        LogService.log(LogLevel.Trace, `value put : ${save.value1}`, null);
+        LogService.removeLevelVoid();
         return;
       }
-      Log.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} not found`, null);
-      Log.log(LogLevel.Debug, "===== end loadSaveData : OK ", null);
+      LogService.log(LogLevel.Trace, `element with id ${savingConstants.idValue1} not found`, null);
+      LogService.removeLevelVoid();
     }
   }
   return SaveDataInstance;

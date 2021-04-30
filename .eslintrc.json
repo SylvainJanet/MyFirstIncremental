@@ -50,7 +50,7 @@
     "@typescript-eslint/no-magic-numbers": [
       "error",
       {
-        "ignore": [1, -1]
+        "ignore": [1, -1, 0]
       }
     ],
     "max-params": [
