@@ -13,9 +13,9 @@ import type { SavingVersion } from "../../../SavingVersion";
 import type { ISavingSystem0_0 } from "../_interfaces/ISavingSystem0_0";
 import type { ISaveVersioned } from "../../../interfaces/ISaveVersioned";
 import { isSaveVersioned } from "../../../interfaces/ISaveVersioned";
-import { Log } from "../../../../log/config";
 import { LogLevel } from "typescript-logging";
 import type { ISaveConverter0_0 } from "../_interfaces/ISaveConverter0_0";
+import { LogService } from "../../../../log/logService";
 
 // eslint-disable-next-line max-lines-per-function
 export const getSavingSystem0_0 = (
@@ -26,33 +26,33 @@ export const getSavingSystem0_0 = (
 ): ISavingSystem0_0 => {
   const ErrorHelper = {
     throwErrorSaveNotFound(storageName: string): void {
-      Log.log(LogLevel.Debug, "***** throwErrorSaveNotFound *****", null);
+      LogService.addLevel("throwErrorSaveNotFound");
       const error = new ErrorCustom(
         ErrorType.SaveIntegrity,
         ErrorCode.SAVINGSYSTEM_LOAD_NOSAVEFOUND,
         ErrorMessages.SAVINGSYSTEM_LOAD_NOSAVEFOUND(storageName)
       );
-      Log.log(LogLevel.Error, "===== end throwErrorSaveNotFound : error", error);
+      LogService.removeLevelError(error);
       throw error;
     },
     throwErrorSaveCorruptNoVersion(): void {
-      Log.log(LogLevel.Debug, "***** throwErrorSaveCorruptNoVersion *****", null);
+      LogService.addLevel("throwErrorSaveCorruptNoVersion");
       const error = new ErrorCustom(
         ErrorType.SaveIntegrity,
         ErrorCode.SAVINGSYSTEM_LOADRAWSAVE_NOVERSION,
         ErrorMessages.SAVINGSYSTEM_LOADRAWSAVE_NOVERSION
       );
-      Log.log(LogLevel.Error, "===== end throwErrorSaveCorruptNoVersion : error", error);
+      LogService.removeLevelError(error);
       throw error;
     },
     throwErrorSaveCorruptFormatOrVersion(save: ISaveVersioned): void {
-      Log.log(LogLevel.Debug, "***** throwErrorSaveCorruptFormatOrVersion *****", null);
+      LogService.addLevel("throwErrorSaveCorruptFormatOrVersion");
       const error = new ErrorCustom(
         ErrorType.SaveIntegrity,
         ErrorCode.SAVINGSYSTEM_LOADACTUALSAVE_CORRUPT_FORMATORVERSION,
         ErrorMessages.SAVINGSYSTEM_LOADACTUALSAVE_CORRUPT_FORMATORVERSION(save)
       );
-      Log.log(LogLevel.Error, "===== end throwErrorSaveCorruptFormatOrVersion : error", error);
+      LogService.removeLevelError(error);
       throw error;
     },
   };
@@ -65,35 +65,35 @@ export const getSavingSystem0_0 = (
     converter,
 
     save(): void {
-      Log.log(LogLevel.Debug, "***** save *****", null);
-      Log.log(LogLevel.Trace, "create save data", null);
+      LogService.addLevel("AbstractSavingSystem0_0.save");
+      LogService.log(LogLevel.Trace, "create save data", null);
       this.saveData = this.saveDataType.getSaveData();
-      Log.log(LogLevel.Trace, "put save data in localStorage", null);
+      LogService.log(LogLevel.Trace, "put save data in localStorage", null);
       localStorage.setItem(this.savingConstants.storageName, JSON.stringify(this.saveData));
-      Log.log(LogLevel.Debug, "===== end save : OK", null);
+      LogService.removeLevelVoid();
     },
 
     load(): void {
-      Log.log(LogLevel.Debug, "***** load *****", null);
-      Log.log(LogLevel.Trace, "read localStorage", null);
+      LogService.addLevel("AbstractSavingSystem0_0.load");
+      LogService.log(LogLevel.Trace, "read localStorage", null);
       const rawObjectSaved = localStorage.getItem(this.savingConstants.storageName);
       if (rawObjectSaved === null) {
-        Log.log(LogLevel.Trace, "nothing was found", null);
+        LogService.log(LogLevel.Trace, "nothing was found", null);
         ErrorHelper.throwErrorSaveNotFound(this.savingConstants.storageName);
       } else {
-        Log.log(LogLevel.Debug, "===== end load : loadRawSave()", null);
         this.loadRawSave(rawObjectSaved);
+        LogService.removeLevelVoid();
       }
     },
 
     loadRawSave(rawObjectSaved: string): void {
-      Log.log(LogLevel.Debug, "***** loadRawSave *****", null);
-      Log.log(LogLevel.Trace, "parse JSON object", null);
+      LogService.addLevel("AbstractSavingSystem0_0.loadRawSave");
+      LogService.log(LogLevel.Trace, "parse JSON object", null);
       const anyObjectSaved = JSON.parse(rawObjectSaved);
-      Log.log(LogLevel.Trace, "check version exists", null);
+      LogService.log(LogLevel.Trace, "check version exists", null);
       if (isSaveVersioned(anyObjectSaved)) {
-        Log.log(LogLevel.Debug, "===== end loadRawSave : loadActualSave()", null);
         this.loadActualSave(anyObjectSaved);
+        LogService.removeLevelVoid();
         return;
       }
       ErrorHelper.throwErrorSaveCorruptNoVersion();
@@ -101,19 +101,19 @@ export const getSavingSystem0_0 = (
 
     // eslint-disable-next-line max-statements
     loadActualSave(actualSave: ISaveVersioned): void {
-      Log.log(LogLevel.Debug, "***** loadActualSave *****", null);
+      LogService.addLevel("AbstractSavingSystem0_0.loadActualSave");
       let modifiedSave = actualSave;
-      Log.log(LogLevel.Trace, "does the save need to be converted ?", null);
+      LogService.log(LogLevel.Trace, "does the save need to be converted ?", null);
       if (modifiedSave.version !== this.version) {
-        Log.log(LogLevel.Trace, "conversion", null);
+        LogService.log(LogLevel.Trace, "conversion", null);
         modifiedSave = this.converter.convert(modifiedSave);
       }
-      Log.log(LogLevel.Trace, "is save not corrupt and at correct version ?", null);
+      LogService.log(LogLevel.Trace, "is save not corrupt and at correct version ?", null);
       if (TypeHelperSavingSystem0_0.isSaveData(modifiedSave) && modifiedSave.version === this.version) {
-        Log.log(LogLevel.Trace, "save up to date", null);
+        LogService.log(LogLevel.Trace, "save up to date", null);
         this.saveData = modifiedSave;
-        Log.log(LogLevel.Debug, "===== end loadRawSave : saveDataType.loadSaveData()", null);
         this.saveDataType.loadSaveData(this.saveData);
+        LogService.removeLevelVoid();
         return;
       }
       ErrorHelper.throwErrorSaveCorruptFormatOrVersion(modifiedSave);
